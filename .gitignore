@@ -1,0 +1,16 @@
+*.ipr
+*.iml
+*.iws
+*.log
+*.bak
+*~
+.DS_Store
+nohup.out
+*.db
+.staging
+target/
+project/boot/
+.idea/
+*/src/main/webapp/uploads/
+*/src/main/webapp/public/html/
+
