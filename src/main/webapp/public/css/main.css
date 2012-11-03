@@ -1,8 +1,8 @@
 body {
   margin:0;
   padding:0;
-  background:url("/img/header.png") 0 0 repeat-x,
-             url("/img/noise.png") 0 0 repeat #166B36;
+  background:url("http://cdn.savant.pro/img/misc/cx-bg.png") 0 0 repeat-x,
+             url("http://cdn.savant.pro/img/noise.png") 0 0 repeat #166B36;
   font-size:16px;
   font-family: "HelveticaNeueLight", "HelveticaNeue-Light",
   "Helvetica Neue Light", "HelveticaNeue", "Helvetica Neue",
