@@ -27,7 +27,7 @@ class ScalaConsole(val bucketFunc: () => StringWriter) {
 
   // Default imports
 
-  imain.interpret("import ru.circumflex._, core._, web._, orm._")
+  imain.interpret("import ru.circumflex._, core._, web._, orm._, xml._, cache._")
   imain.interpret("import java.util.Date, java.io._")
 
   def execute(cmd: String): Results.Result = imain.interpret(cmd)
