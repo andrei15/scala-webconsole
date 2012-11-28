@@ -19,12 +19,42 @@
   <dependencies>
     <dependency>
       <groupId>ru.circumflex</groupId>
+      <artifactId>circumflex-cache</artifactId>
+      <version>${cx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.circumflex</groupId>
       <artifactId>circumflex-web</artifactId>
       <version>${cx.version}</version>
     </dependency>
     <dependency>
       <groupId>ru.circumflex</groupId>
+      <artifactId>circumflex-orm</artifactId>
+      <version>${cx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.circumflex</groupId>
+      <artifactId>circumflex-xml</artifactId>
+      <version>${cx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.circumflex</groupId>
       <artifactId>circumflex-ftl</artifactId>
+      <version>${cx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.circumflex</groupId>
+      <artifactId>circumflex-markeven</artifactId>
+      <version>${cx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.circumflex</groupId>
+      <artifactId>circumflex-diff</artifactId>
+      <version>${cx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>ru.circumflex</groupId>
+      <artifactId>circumflex-mail</artifactId>
       <version>${cx.version}</version>
     </dependency>
     <!-- Logging -->
