@@ -10,7 +10,7 @@ class ScalaConsoleRouter extends Router {
 
   post("/?").and(request.body.isXHR) = {
     val cmd = param("cmd").trim
-    var result = "<div class=\"input\">" + cmd + "</div>"
+    var result = "<div class=\"input\">" + escapeHtml(cmd) + "</div>"
     val console = getConsole
     dropBucket()
     import scala.tools.nsc._

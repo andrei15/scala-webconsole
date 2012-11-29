@@ -2,9 +2,8 @@ package pro.savant.circumflex
 package scalaconsole
 
 import ru.circumflex._, core._
-import java.io.{PrintWriter, Writer, File, StringWriter}
-import tools.nsc.Settings
-import tools.nsc.interpreter.{Results, IMain}
+import tools.nsc._, interpreter._
+import java.io._
 
 class ScalaConsole(val bucketFunc: () => StringWriter) {
 
@@ -15,27 +14,59 @@ class ScalaConsole(val bucketFunc: () => StringWriter) {
           File.pathSeparator + cx.getString("application.classpath").getOrElse("")
   settings.Yreplsync.value = true
 
-  val writer = new Writer {
-    def write(cbuf: Array[Char], off: Int, len: Int) {
-      bucketFunc().write(cbuf, off, len)
-    }
-    def flush() {}
-    def close() {}
-  }
+  val writer = new PrintWriter(
+    new Writer {
+      def write(cbuf: Array[Char], off: Int, len: Int) {
+        bucketFunc().write(cbuf, off, len)
+      }
+      def flush() {}
+      def close() {}
+    })
 
-  var imain = new IMain(settings, new PrintWriter(writer))
+  var imain = new IMain(settings, writer)
 
-  // Default imports
+  // Make default imports
 
   imain.interpret("import ru.circumflex._, core._, web._, orm._, xml._, cache._")
   imain.interpret("import java.util.Date, java.io._")
+  imain.interpret("import pro.savant.circumflex._, scalaconsole.ScalaConsole._")
 
-  def execute(cmd: String): Results.Result = imain.interpret(cmd)
+  def execute(cmd: String): Results.Result = try {
+    ctx += "scalaconsole.out.writer" -> writer
+    imain.interpret(cmd)
+  } finally {
+    ctx -= "scalaconsole.out.writer"
+  }
 
   def reset() {
     imain.reset()
     imain.close()
     imain = new IMain(settings, new PrintWriter(writer))
+  }
+
+}
+
+object ScalaConsole {
+
+  val stdout = new PrintWriter(System.out)
+
+  def getWriter = ctx.getAs[PrintWriter]("scalaconsole.out.writer")
+      .getOrElse(stdout)
+
+  def print(obj: Any) {
+    getWriter.print(obj)
+  }
+
+  def println() {
+    getWriter.println()
+  }
+
+  def println(obj: Any) {
+    getWriter.println(obj)
+  }
+
+  def printf(text: String, xs: Any*) {
+    getWriter.print(text.format(xs: _*))
   }
 
 }
